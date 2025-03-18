@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class MainView extends VerticalLayout {
 
     private final UserService userService;
-
     private final TextField nameField = new TextField("Name");
     private final TextField emailField = new TextField("Email");
     private final TextField phoneField = new TextField("Phone");
@@ -43,8 +42,8 @@ public class MainView extends VerticalLayout {
     private void saveUser() {
         User user = new User();
         user.setName(nameField.getValue());
-        user.setEmail(nameField.getValue());
-        user.setPhone(nameField.getValue());
+        user.setEmail(emailField.getValue());
+        user.setPhone(phoneField.getValue());
 
         userService.addUser(user);
         updateGrid();
