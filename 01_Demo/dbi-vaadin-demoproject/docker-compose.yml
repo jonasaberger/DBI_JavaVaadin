@@ -5,7 +5,7 @@ services:
     image: postgres:latest
     container_name: postgres-todo
     environment:
-      POSTGRES_DB: tododb
+      POSTGRES_DB: vaadinDB
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
