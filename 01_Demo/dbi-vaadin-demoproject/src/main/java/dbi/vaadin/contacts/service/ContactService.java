@@ -29,4 +29,8 @@ public class ContactService {
     public List<Contact> findAll() {
         return contactRepository.findAll();
     }
+
+    public void deleteAll() {
+        contactRepository.deleteAll();
+    }
 }

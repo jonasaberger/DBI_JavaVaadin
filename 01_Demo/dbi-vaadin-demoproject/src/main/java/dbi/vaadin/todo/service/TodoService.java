@@ -24,6 +24,7 @@ public class TodoService {
         this.clock = clock;
     }
 
+    @Transactional
     public void createTodo(String description, @Nullable LocalDate dueDate) {
         if ("fail".equals(description)) {
             throw new RuntimeException("This is for testing the error handler");
@@ -33,6 +34,23 @@ public class TodoService {
         todo.setCreationDate(clock.instant());
         todo.setDueDate(dueDate);
         todoRepository.saveAndFlush(todo);
+    }
+
+
+    @Transactional
+    public Todo updateTodo(Todo todo) {
+        if (!todoRepository.existsById(todo.getId())) {
+            throw new IllegalArgumentException("Todo not found with id: " + todo.getId());
+        }
+        return todoRepository.save(todo);
+    }
+
+    @Transactional
+    public void deleteTodo(Long id) {
+        if ("fail".equals(id)) {
+            throw new RuntimeException("This is for testing the error handler");
+        }
+        todoRepository.deleteById(id);
     }
 
     public List<Todo> list(Pageable pageable) {
